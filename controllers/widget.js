@@ -27,6 +27,10 @@ m.getIconURL = function(){return m.data.iconURL; };
 m.getRadius = function(){return m.data.radius; };
 m.getButtonColor = function(){return m.data.buttonColor; };
 
+$.imgcontainer.addEventListener("click", function(e){
+	m.data.onClick(_.extend(e, m.data));
+});
+
 m.init = function(args){
 	_.extend(m.data, args);
 	if(OS_ANDROID && m.data.iconURL[0] != "/"){
@@ -48,9 +52,6 @@ m.init = function(args){
 	$.imgcontainer.bottom = m.data.padding;
 	$.imgcontainer.left = m.data.padding;
 	$.imgcontainer.right = m.data.padding;
-	$.imgcontainer.addEventListener("click", function(e){
-		m.data.onClick(_.extend(e, m.data));
-	});
 	$.iconbutton.width = (m.data.radius + m.data.padding) * 2;
 	$.iconbutton.height = (m.data.radius + m.data.padding) * 2;
 };
